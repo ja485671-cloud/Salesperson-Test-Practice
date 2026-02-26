@@ -662,6 +662,68 @@ mark{background:#ffe066;border-radius:2px;}
   }
 
 
+/* ════ RATES STYLES ════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap');
+:root {
+  --bg:#f7f5f0;--surface:#fff;--border:#e5ddd0;
+  --accent:#2c4a7c;--accent2:#4a7cb5;--accent-light:#eef3fa;
+  --text:#1a1a2e;--muted:#6b7280;
+  --green:#065f46;--green-bg:#ecfdf5;
+  --red:#991b1b;--red-bg:#fef2f2;
+  --yellow:#92400e;--yellow-bg:#fffbeb;
+  --purple:#5b21b6;--purple-bg:#f5f3ff;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;font-size:14px;line-height:1.7;}
+
+.page-header{background:linear-gradient(135deg,#2c4a7c,#1a3055);color:#fff;padding:24px 36px;}
+.page-header h1{font-family:'Noto Serif TC',serif;font-size:20px;margin-bottom:4px;}
+.page-header p{font-size:12px;opacity:.8;}
+
+.main{max-width:1000px;margin:0 auto;padding:28px 36px 60px;}
+
+.section-title{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;color:var(--accent);padding:10px 16px;background:var(--accent-light);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;margin:28px 0 14px;}
+
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+th{background:#f1f5f9;font-size:11px;font-weight:700;color:var(--muted);padding:9px 14px;text-align:left;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#f8fafc;}
+
+.rate{font-size:22px;font-weight:700;font-family:'Noto Serif TC',serif;white-space:nowrap;}
+.rate.green{color:var(--green);}
+.rate.red{color:var(--red);}
+.rate.purple{color:var(--purple);}
+.rate.yellow{color:var(--yellow);}
+
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.tag-land{background:#dbeafe;color:#1d4ed8;}
+.tag-tax{background:#dcfce7;color:#15803d;}
+.tag-house{background:#fce7f3;color:#9d174d;}
+.tag-fair{background:#fef9c3;color:#854d0e;}
+.tag-condo{background:#ede9fe;color:#5b21b6;}
+.tag-civil{background:#ffedd5;color:#9a3412;}
+.tag-contract{background:#f0fdf4;color:#166534;}
+.tag-consumer{background:#fdf4ff;color:#7e22ce;}
+
+.source{display:inline-block;background:var(--border);color:var(--muted);font-size:11px;padding:2px 7px;border-radius:4px;margin-top:3px;}
+.note{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* 地價稅累進表 */
+.progressive{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+.progressive th{background:#1e3a5f;color:#fff;font-size:11px;font-weight:700;padding:10px 14px;text-align:center;letter-spacing:.05em;}
+.progressive td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.progressive tr:last-child td{border-bottom:none;}
+.progressive tr:hover td{background:#f0f7ff;}
+.progressive .base-row td{background:#e8f4fd;font-weight:700;}
+.prog-rate{font-size:18px;font-weight:700;color:var(--accent);font-family:'Noto Serif TC',serif;}
+
+.tip-box{background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:var(--radius);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--yellow);}
+.tip-box strong{display:block;margin-bottom:4px;font-size:14px;}
+
+
 /* ════ MERGED OVERRIDES ════ */
 /* Quiz 區塊在 tab 切換時的容器 */
 #section-quiz {
@@ -705,6 +767,7 @@ mark{background:#ffe066;border-radius:2px;}
   <button class="nav-tab" onclick="showSection('law')">⚡ 法律一句話速記</button>
   <button class="nav-tab" onclick="showSection('concept')">🔀 容易混淆概念</button>
   <button class="nav-tab" onclick="showSection('authority')">🏛️ 主管機關一覽</button>
+  <button class="nav-tab" onclick="showSection('rates')">📊 稅率比率</button>
   <button class="nav-tab" onclick="showSection('quiz')">📝 模擬練習</button>
   <button class="nav-tab" id="search-tab" style="display:none" onclick="showSection('search')">🔍 搜尋結果</button>
 </div>
@@ -1245,6 +1308,439 @@ mark{background:#ffe066;border-radius:2px;}
 <div class="section" id="section-search">
   <div class="section-title">🔍 搜尋結果</div>
   <div id="search-result-content"></div>
+</div>
+
+
+<!-- ══════ RATES ══════ -->
+<div class="section" id="section-rates">
+
+
+<!-- ══ 地價稅累進稅率 ══ -->
+<div class="section-title">📈 地價稅累進稅率（土地稅法第16條）</div>
+<div class="tip-box">
+  <strong>🧠 記憶口訣</strong>
+  基本稅率千分之10，超過累進起點地價後，每跳一級約加千分之10：<br>
+  未達5倍 → <b>‰10</b>｜5~10倍 → <b>‰25</b>｜10~15倍 → <b>‰35</b>｜15~20倍 → <b>‰45</b>｜20倍以上 → <b>‰55</b>
+</div>
+<table class="progressive">
+  <thead><tr><th>地價總額</th><th>稅率</th><th>換算%</th></tr></thead>
+  <tbody>
+    <tr class="base-row"><td>未超過累進起點地價</td><td class="prog-rate">千分之 10</td><td>1%</td></tr>
+    <tr><td>超過累進起點地價 未達 <b>5倍</b></td><td class="prog-rate">千分之 15</td><td>1.5%</td></tr>
+    <tr><td>超過累進起點地價 <b>5倍</b> 至 <b>10倍</b></td><td class="prog-rate">千分之 25</td><td>2.5%</td></tr>
+    <tr><td>超過累進起點地價 <b>10倍</b> 至 <b>15倍</b></td><td class="prog-rate">千分之 35</td><td>3.5%</td></tr>
+    <tr><td>超過累進起點地價 <b>15倍</b> 至 <b>20倍</b></td><td class="prog-rate">千分之 45</td><td>4.5%</td></tr>
+    <tr><td>超過累進起點地價 <b>20倍</b> 以上</td><td class="prog-rate">千分之 55</td><td>5.5%</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ 地價稅優惠稅率 ══ -->
+<div class="section-title">🏠 地價稅優惠稅率（土地稅法第17-19條）</div>
+<table>
+  <thead><tr><th>用途</th><th>稅率</th><th>備註</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>自用住宅用地</strong></td>
+      <td><span class="rate green">千分之 2</span></td>
+      <td class="note">都市土地未超過3公畝、非都市未超過7公畝<br>需開徵前40日（9/22前）申請</td>
+      <td><span class="source">第17條</span></td>
+    </tr>
+    <tr>
+      <td><strong>國民住宅／勞工宿舍</strong></td>
+      <td><span class="rate green">千分之 2</span></td>
+      <td class="note">國民住宅用地或企業/公營事業興建勞工宿舍</td>
+      <td><span class="source">第17條</span></td>
+    </tr>
+    <tr>
+      <td><strong>工業區直接使用</strong></td>
+      <td><span class="rate purple">千分之 10</span></td>
+      <td class="note">依法劃定工業區，直接供工業使用</td>
+      <td><span class="source">第18條</span></td>
+    </tr>
+    <tr>
+      <td><strong>加油站／公眾停車場</strong></td>
+      <td><span class="rate purple">千分之 10</span></td>
+      <td class="note">主管機關核准設置之加油站、都市計畫公眾停車場</td>
+      <td><span class="source">第18條</span></td>
+    </tr>
+    <tr>
+      <td><strong>私立動物園／體育場所</strong></td>
+      <td><span class="rate purple">千分之 10</span></td>
+      <td class="note">—</td>
+      <td><span class="source">第18條</span></td>
+    </tr>
+    <tr>
+      <td><strong>都市計畫公共設施保留地</strong><br>（仍供建築使用之非自用住宅）</td>
+      <td><span class="rate yellow">千分之 6</span></td>
+      <td class="note">保留期間仍為建築使用</td>
+      <td><span class="source">第19條</span></td>
+    </tr>
+    <tr>
+      <td><strong>空地稅</strong></td>
+      <td><span class="rate red">基本稅額最高 5倍</span></td>
+      <td class="note">建物價值不及基地申報地價10%者視為空地</td>
+      <td><span class="source">第11、21條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 土地增值稅 ══ -->
+<div class="section-title">📈 土地增值稅稅率（土地稅法第33-34條）</div>
+<table>
+  <thead><tr><th>情況</th><th>稅率</th><th>備註</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>自用住宅用地優惠稅率</strong></td>
+      <td><span class="rate green">10%</span></td>
+      <td class="note">都市土地未超過3公畝、非都市未超過3.5公畝（7公畝×½）</td>
+      <td><span class="source">第34條</span></td>
+    </tr>
+    <tr>
+      <td><strong>持有超過30年 減徵</strong></td>
+      <td><span class="rate green">超過20%稅率部分<br>減徵 30%</span></td>
+      <td class="note">持有30年以上才有此優惠</td>
+      <td><span class="source">第33條</span></td>
+    </tr>
+    <tr>
+      <td><strong>重新規定地價增繳地價稅<br>可抵繳增值稅上限</strong></td>
+      <td><span class="rate yellow">最高 5%</span></td>
+      <td class="note">增繳地價稅得抵繳增值稅，但不超過增值稅總額5%</td>
+      <td><span class="source">第31條</span></td>
+    </tr>
+    <tr>
+      <td><strong>未辦移轉登記再行出售罰鍰</strong></td>
+      <td><span class="rate red">移轉現值 2%</span></td>
+      <td class="note">土地買賣未辦竣移轉登記再出售</td>
+      <td><span class="source">第54條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 房屋稅 ══ -->
+<div class="section-title">🏘️ 房屋稅稅率（房屋稅條例第5條）</div>
+<div class="tip-box">
+  <strong>🧠 記憶口訣</strong>
+  自住最低1.2%、人民團體1.5~2.5%、營業用3~5%（數字由小到大，用途由輕到重）
+</div>
+<table>
+  <thead><tr><th>用途</th><th>稅率</th><th>備註</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>自住 / 公益出租</strong></td>
+      <td><span class="rate green">1.2%</span></td>
+      <td class="note">固定稅率</td>
+    </tr>
+    <tr>
+      <td><strong>人民團體等非營業使用</strong></td>
+      <td><span class="rate purple">1.5% ～ 2.5%</span></td>
+      <td class="note">由地方政府在此範圍內訂定</td>
+    </tr>
+    <tr>
+      <td><strong>營業用／私人醫院診所／<br>自由職業事務所</strong></td>
+      <td><span class="rate red">3% ～ 5%</span></td>
+      <td class="note">由地方政府在此範圍內訂定</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 登記費 ══ -->
+<div class="section-title">📋 登記費費率（土地法）</div>
+<table>
+  <thead><tr><th>事項</th><th>費率</th><th>備註</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>土地總登記 / 建物第一次登記</strong></td>
+      <td><span class="rate green">千分之 2</span></td>
+      <td class="note">按權利價值繳納</td>
+      <td><span class="source">土地法第65條</span></td>
+    </tr>
+    <tr>
+      <td><strong>土地權利變更登記</strong></td>
+      <td><span class="rate green">千分之 1</span></td>
+      <td class="note">按權利價值繳納</td>
+      <td><span class="source">土地法第76條</span></td>
+    </tr>
+    <tr>
+      <td><strong>登記儲金提存比例</strong></td>
+      <td><span class="rate purple">10%</span></td>
+      <td class="note">地政機關從登記費中提存，專備登記錯誤損害賠償</td>
+      <td><span class="source">土地法第70條</span></td>
+    </tr>
+    <tr>
+      <td><strong>逾期登記罰鍰上限</strong></td>
+      <td><span class="rate red">應納登記費 20倍</span></td>
+      <td class="note">土地權利變更逾期聲請</td>
+      <td><span class="source">土地法第73條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 租金上限 ══ -->
+<div class="section-title">🏠 租金上限比率（土地法）</div>
+<table>
+  <thead><tr><th>類型</th><th>上限</th><th>計算基礎</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>政府興建供承租自住之房屋租金</strong></td>
+      <td><span class="rate green">年息 8%</span></td>
+      <td class="note">土地及建築物價額</td>
+      <td><span class="source">土地法第94條</span></td>
+    </tr>
+    <tr>
+      <td><strong>城市地方一般房屋租金</strong></td>
+      <td><span class="rate purple">年息 10%</span></td>
+      <td class="note">土地及建築物申報總價</td>
+      <td><span class="source">土地法第97條</span></td>
+    </tr>
+    <tr>
+      <td><strong>租用基地建築房屋地租</strong></td>
+      <td><span class="rate purple">年息 10%</span></td>
+      <td class="note">土地申報總價</td>
+      <td><span class="source">土地法第105條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 平均地權 ══ -->
+<div class="section-title">⚖️ 平均地權條例比率</div>
+<table>
+  <thead><tr><th>事項</th><th>比率</th><th>備註</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>未申報地價之認定</strong></td>
+      <td><span class="rate green">公告地價 80%</span></td>
+      <td class="note">土地所有人未於公告期間申報地價</td>
+      <td><span class="source">平均地權條例第16條</span></td>
+    </tr>
+    <tr>
+      <td><strong>市地重劃折價抵付共同負擔上限</strong></td>
+      <td><span class="rate yellow">重劃區總面積 45%</span></td>
+      <td class="note">需過半數所有人（面積過半）同意</td>
+      <td><span class="source">平均地權條例第60條</span></td>
+    </tr>
+    <tr>
+      <td><strong>區段徵收抵價地最低比例</strong></td>
+      <td><span class="rate purple">徵收總面積 40%</span></td>
+      <td class="note">抵價地總面積不得少於徵收總面積40%</td>
+      <td><span class="source">土地徵收條例第39條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 獨占事業門檻 ══ -->
+<div class="section-title">🏭 公平交易法—獨占事業市占率門檻（第8條）</div>
+<div class="tip-box">
+  <strong>🧠 記憶口訣</strong>「1人½、2人⅔、3人¾」—— 事業數越多，門檻越高
+</div>
+<table>
+  <thead><tr><th>事業數</th><th>市占率門檻</th><th>例外（不列入認定）</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1 家事業</strong></td><td><span class="rate green">1/2（50%）以上</span></td><td class="note">上一年度銷售額未達主管機關公告金額</td></tr>
+    <tr><td><strong>2 家事業合計</strong></td><td><span class="rate purple">2/3（約67%）以上</span></td><td class="note">同上</td></tr>
+    <tr><td><strong>3 家事業合計</strong></td><td><span class="rate red">3/4（75%）以上</span></td><td class="note">同上</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ 其他比率 ══ -->
+<div class="section-title">📌 其他重要比率</div>
+<table>
+  <thead><tr><th>法律</th><th>事項</th><th>比率</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="tag tag-civil">民法</span></td>
+      <td><strong>約定利率上限</strong></td>
+      <td><span class="rate green">週年 16%</span></td>
+      <td><span class="source">民法第205條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契稅</span></td>
+      <td><strong>滯納金（每逾2日）</strong></td>
+      <td><span class="rate red">1%</span></td>
+      <td><span class="source">契稅條例第25條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契稅</span></td>
+      <td><strong>舉發獎勵金</strong></td>
+      <td><span class="rate purple">罰鍰 20%</span></td>
+      <td><span class="source">契稅條例第32條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-fair">公平交易</span></td>
+      <td><strong>反托拉斯基金提撥</strong></td>
+      <td><span class="rate purple">罰鍰 30%</span></td>
+      <td><span class="source">公交法第47-1條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-fair">公平交易</span></td>
+      <td><strong>事業結合申報豁免（同一事業持股）</strong></td>
+      <td><span class="rate yellow">50% 以上</span></td>
+      <td><span class="source">公交法第12條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-fair">公平交易</span></td>
+      <td><strong>事業結合申報豁免（全資子公司）</strong></td>
+      <td><span class="rate yellow">100%</span></td>
+      <td><span class="source">公交法第12條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-condo">公寓大廈</span></td>
+      <td><strong>積欠費用得訴請遷離門檻</strong></td>
+      <td><span class="rate red">區分所有權總價 1%</span></td>
+      <td><span class="source">公寓大廈管理條例第22條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-consumer">消保法</span></td>
+      <td><strong>分期付款未約定利率適用</strong></td>
+      <td><span class="rate green">週年 5%</span></td>
+      <td><span class="source">消保法第21條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契約書範本</span></td>
+      <td><strong>預售屋面積誤差得解約門檻</strong></td>
+      <td><span class="rate red">超過 3%</span></td>
+      <td><span class="source">預售屋定型化契約</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契約書範本</span></td>
+      <td><strong>成屋違約金沒收上限</strong></td>
+      <td><span class="rate red">房地總價 15%</span></td>
+      <td><span class="source">成屋買賣定型化契約</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契約書範本</span></td>
+      <td><strong>沒收定金業者可得上限</strong></td>
+      <td><span class="rate yellow">沒收定金 50%</span></td>
+      <td><span class="source">不動產委託銷售定型化契約</span></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ══ 倍數整理 ══ -->
+<div class="section-title">✖️ 「幾倍」完整整理</div>
+<div class="tip-box">
+  <strong>🧠 最容易搞混的對比</strong>
+  空地稅最高<b>5倍</b>｜登記費罰鍰最高<b>20倍</b>｜契稅匿報<b>1~3倍</b>｜房屋稅漏稅<b>2倍</b>以下<br>
+  消保法過失<b>1倍</b>、故意<b>5倍</b>｜公交法故意<b>3倍</b>｜廣告薦證<b>10倍</b>
+</div>
+<table>
+  <thead><tr><th>法律</th><th>情境</th><th>倍數</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="tag tag-tax">土地稅法</span></td>
+      <td><strong>空地稅加徵上限</strong><br><span class="note">按應納地價稅基本稅額加徵</span></td>
+      <td><span class="rate red">最高 5 倍</span><br><span class="note">按應納地價稅基本稅額加徵，最高5倍</span></td>
+      <td><span class="source">土地稅法第21條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-land">土地法</span></td>
+      <td><strong>逾期登記費罰鍰上限</strong><br><span class="note">土地權利變更登記逾期聲請</span></td>
+      <td><span class="rate red">最高 20 倍</span></td>
+      <td><span class="source">土地法第73條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-land">平均地權</span></td>
+      <td><strong>未辦移轉登記再行出售罰鍰</strong></td>
+      <td><span class="rate red">應納登記費 20 倍以下</span></td>
+      <td><span class="source">平均地權條例第81條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-contract">契稅條例</span></td>
+      <td><strong>匿報或短報契稅罰鍰</strong></td>
+      <td><span class="rate red">應納稅額 1～3 倍</span></td>
+      <td><span class="source">契稅條例第26條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-house">房屋稅</span></td>
+      <td><strong>未依規定申報致漏稅罰鍰</strong></td>
+      <td><span class="rate red">所漏稅額 2 倍以下</span></td>
+      <td><span class="source">房屋稅條例第16條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-consumer">消保法</span></td>
+      <td><strong>懲罰性賠償－過失</strong></td>
+      <td><span class="rate yellow">損害額 1 倍以下</span></td>
+      <td><span class="source">消保法第51條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-consumer">消保法</span></td>
+      <td><strong>懲罰性賠償－故意</strong></td>
+      <td><span class="rate red">損害額 5 倍以下</span></td>
+      <td><span class="source">消保法第51條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-fair">公平交易法</span></td>
+      <td><strong>懲罰性賠償－故意</strong></td>
+      <td><span class="rate red">損害額 3 倍以下</span></td>
+      <td><span class="source">公交法第31條</span></td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-fair">公平交易法</span></td>
+      <td><strong>廣告薦證者連帶賠償（非名人）</strong></td>
+      <td><span class="rate red">受報酬 10 倍以內</span></td>
+      <td><span class="source">公交法第21條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 獨占市占率分數 -->
+<div class="section-title">🏭 公平交易法—分數整理</div>
+<table>
+  <thead><tr><th>情境</th><th>分數／門檻</th><th>備註</th><th>法源</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>1家獨占門檻</strong></td>
+      <td><span class="rate green">1/2（50%）以上</span></td>
+      <td class="note">個別事業市占率未達1/10者不列入</td>
+      <td><span class="source">公交法第8條</span></td>
+    </tr>
+    <tr>
+      <td><strong>2家合計獨占門檻</strong></td>
+      <td><span class="rate purple">2/3（約67%）以上</span></td>
+      <td class="note">銷售額未達主管機關公告金額者不列入</td>
+      <td><span class="source">公交法第8條</span></td>
+    </tr>
+    <tr>
+      <td><strong>3家合計獨占門檻</strong></td>
+      <td><span class="rate red">3/4（75%）以上</span></td>
+      <td class="note">同上</td>
+      <td><span class="source">公交法第8條</span></td>
+    </tr>
+    <tr>
+      <td><strong>個別事業不列入獨占認定</strong></td>
+      <td><span class="rate green">未達 1/10（10%）</span></td>
+      <td class="note">即使整體達½，個別未達10%不列入</td>
+      <td><span class="source">公交法第8條</span></td>
+    </tr>
+    <tr>
+      <td><strong>結合申報豁免（同一事業持股）</strong></td>
+      <td><span class="rate yellow">50% 以上</span></td>
+      <td class="note">同一事業持有有表決權股份達50%以上之事業間結合</td>
+      <td><span class="source">公交法第12條</span></td>
+    </tr>
+    <tr>
+      <td><strong>結合申報豁免（全資子公司）</strong></td>
+      <td><span class="rate yellow">100%</span></td>
+      <td class="note">單一事業轉投資成立並持有100%之子公司</td>
+      <td><span class="source">公交法第12條</span></td>
+    </tr>
+    <tr>
+      <td><strong>地價評議委員會專家學者比例</strong></td>
+      <td><span class="rate purple">不得少於 1/2</span></td>
+      <td class="note">委員中專家學者與民間團體代表合計不得少於委員總數½</td>
+      <td><span class="source">平均地權條例第4條</span></td>
+    </tr>
+    <tr>
+      <td><strong>公寓大廈重建同意門檻</strong></td>
+      <td><span class="rate red">⚠️ 非 2/3</span><br><span class="note">題庫考點：「三分之二以上即可重建」是<b>錯誤</b>說法</span></td>
+      <td class="note">正確門檻依法條為4/5以上，但題庫出題方向為「辨別2/3是錯的」</td>
+      <td><span class="source">公寓大廈管理條例第13條</span></td>
+    </tr>
+  </tbody>
+</table>
+
+
 </div>
 
 <!-- ══════ QUIZ ══════ -->
@@ -1921,7 +2417,7 @@ window.showSection = function(name) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   const el = document.getElementById('section-' + name);
   if (el) el.classList.add('active');
-  const order = ['trap','law','concept','authority','quiz','search'];
+  const order = ['trap','law','concept','authority','rates','quiz','search'];
   const idx = order.indexOf(name);
   const tabs = document.querySelectorAll('.nav-tab');
   if (idx !== -1 && tabs[idx]) tabs[idx].classList.add('active');
